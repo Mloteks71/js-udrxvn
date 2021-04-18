@@ -62,9 +62,27 @@ var butdel=document.createElement("button");
   show();
 };
 butdel.innerText="Delete2";
-
-
 nowy.querySelector(".action").appendChild(butdel);
+
+    nowy.querySelector(".action").appendChild(but);
+var but1=document.createElement("button");
+    but1.id=newpro.lp;
+    but1.onclick=function Up1(this){
+      if(this.id-1>0){
+        console.log(list);
+[list[this.id-2], list[this.id-1]] = [list[this.id-1], list[this.id-2]]
+console.log(list);
+localStorage.lista = JSON.stringify(list)
+ let a=document.getElementById("tableId").rows.length;
+ console.log(a)
+ for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
+  listlp();
+  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  show();}
+};
+but1.innerText="Up";
+nowy.querySelector(".action").appendChild(but1);
 
 
     nowy.hidden = false;

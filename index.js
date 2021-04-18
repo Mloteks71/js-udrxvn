@@ -63,8 +63,8 @@ var butdel=document.createElement("button");
 };
 butdel.innerText="Delete2";
 nowy.querySelector(".action").appendChild(butdel);
-
     nowy.querySelector(".action").appendChild(but);
+
 var but1=document.createElement("button");
     but1.id=newpro.lp;
     but1.onclick=function Up1(this){
@@ -84,6 +84,26 @@ localStorage.lista = JSON.stringify(list)
 but1.innerText="Up";
 nowy.querySelector(".action").appendChild(but1);
 
+var but2=document.createElement("button");
+    but2.id=newpro.lp;
+but2.onclick=function Down1(this){
+  console.log(document.getElementById("tableId").rows.length);
+  console.log(parseInt(this.id)+2);
+      if(parseInt(this.id)+3<document.getElementById("tableId").rows.length){
+        
+[list[this.id], list[this.id-1]] = [list[this.id-1], list[this.id]]
+console.log(list);
+localStorage.lista = JSON.stringify(list)
+ let a=document.getElementById("tableId").rows.length;
+ console.log(a)
+ for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
+  listlp();
+  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  show();}
+};
+but2.innerText="Down";
+nowy.querySelector(".action").appendChild(but2);
 
     nowy.hidden = false;
     kontener.appendChild(nowy);

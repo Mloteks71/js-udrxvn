@@ -108,9 +108,9 @@ nowy.querySelector(".action").appendChild(but2);
     nowy.hidden = false;
     kontener.appendChild(nowy);
     sumsum()
-      event.preventDefault();
 }
 else alert("Wprowadź poprawne dane");
+event.preventDefault();
 }
 
 

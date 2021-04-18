@@ -44,9 +44,8 @@ localStorage.lista = JSON.stringify(list)
     localStorage.lista = JSON.stringify(list)  //tu liste zapisujesz
 };
 but.innerText="Edit";
-
-
     nowy.querySelector(".action").appendChild(but);
+
 var butdel=document.createElement("button");
     butdel.id=newpro.lp;
     butdel.onclick=function Delete2(this){
@@ -62,8 +61,8 @@ var butdel=document.createElement("button");
   show();
 };
 butdel.innerText="Delete2";
-nowy.querySelector(".action").appendChild(butdel);
     nowy.querySelector(".action").appendChild(but);
+nowy.querySelector(".action").appendChild(butdel);
 
 var but1=document.createElement("button");
     but1.id=newpro.lp;
@@ -89,7 +88,7 @@ var but2=document.createElement("button");
 but2.onclick=function Down1(this){
   console.log(document.getElementById("tableId").rows.length);
   console.log(parseInt(this.id)+2);
-      if(parseInt(this.id)+3<document.getElementById("tableId").rows.length){
+      if(parseInt(this.id)+2<document.getElementById("tableId").rows.length){
         
 [list[this.id], list[this.id-1]] = [list[this.id-1], list[this.id]]
 console.log(list);
@@ -171,12 +170,50 @@ var butdel=document.createElement("button");
 };
 butdel.innerText="Delete";
 
-
 nowy.querySelector(".action").appendChild(butdel);
 
 
     nowy.hidden = false;
     kontener.appendChild(nowy);
+    var but1=document.createElement("button");
+    but1.id=list[i].lp;
+    but1.onclick=function Up1(this){
+      if(this.id-1>0){
+        console.log(list);
+[list[this.id-2], list[this.id-1]] = [list[this.id-1], list[this.id-2]]
+console.log(list);
+localStorage.lista = JSON.stringify(list)
+ let a=document.getElementById("tableId").rows.length;
+ console.log(a)
+ for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
+  listlp();
+  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  show();}
+};
+but1.innerText="Up";
+nowy.querySelector(".action").appendChild(but1);
+
+var but2=document.createElement("button");
+    but2.id=list[i].lp;
+but2.onclick=function Down1(this){
+  console.log(document.getElementById("tableId").rows.length);
+  console.log(parseInt(this.id)+2);
+      if(parseInt(this.id)+2<document.getElementById("tableId").rows.length){
+        
+[list[this.id], list[this.id-1]] = [list[this.id-1], list[this.id]]
+console.log(list);
+localStorage.lista = JSON.stringify(list)
+ let a=document.getElementById("tableId").rows.length;
+ console.log(a)
+ for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
+  listlp();
+  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  show();}
+};
+but2.innerText="Down";
+nowy.querySelector(".action").appendChild(but2);
 }
 sumsum()
 }

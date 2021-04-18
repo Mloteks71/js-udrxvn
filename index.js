@@ -17,6 +17,7 @@ document.forms.myform.onsubmit = function (event) {
 list = JSON.parse(localStorage.lista)}
 else list=[];
 // tutaj walidacja na podstawie targeta
+if(event.target.name.value!=null&&parseFloat(event.target.amount.value)&&parseFloat(event.target.price.value)){
 var newpro=new Product(list.length+1,event.target.name.value,event.target.amount.value,event.target.price.value);
 
 list.push(newpro);
@@ -108,6 +109,8 @@ nowy.querySelector(".action").appendChild(but2);
     kontener.appendChild(nowy);
     sumsum()
       event.preventDefault();
+}
+else alert("Wprowadź poprawne dane");
 }
 
 

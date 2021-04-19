@@ -17,7 +17,7 @@ document.forms.myform.onsubmit = function (event) {
 list = JSON.parse(localStorage.lista)}
 else list=[];
 // tutaj walidacja na podstawie targeta
-if(event.target.name.value!=null&&parseFloat(event.target.amount.value)&&parseFloat(event.target.price.value)){
+if(event.target.name.value!=null&&parseFloat(event.target.amount.value)>0&&parseFloat(event.target.price.value)>0){
 var newpro=new Product(list.length+1,event.target.name.value,event.target.amount.value,event.target.price.value);
 
 list.push(newpro);
@@ -32,6 +32,7 @@ localStorage.lista = JSON.stringify(list)
      var but=document.createElement("button");
     but.id=newpro.lp;
     but.onclick=function Edit2(this){
+      if(event.target.name.value!=null&&parseFloat(event.target.amount.value)>0&&parseFloat(event.target.price.value)>0){
  var el=document.getElementById("name")
       list[this.id-1].name=el.value;
       el=document.getElementById("amount")
@@ -41,8 +42,16 @@ localStorage.lista = JSON.stringify(list)
           list[this.id-1].sum=list[this.id-1].price*list[this.id-1].amount;
     console.log(list);
     sumsum();
+     let a=document.getElementById("tableId").rows.length;
+     for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
+  listlp();
     listlp();
     localStorage.lista = JSON.stringify(list)  //tu liste zapisujesz
+    show();
+      }
+      else alert("Wprowadź poprawne dane")
+      event.preventDefault();
 };
 but.innerText="Edit";
     nowy.querySelector(".action").appendChild(but);
@@ -61,7 +70,7 @@ var butdel=document.createElement("button");
   localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
   show();
 };
-butdel.innerText="Delete2";
+butdel.innerText="Delete";
     nowy.querySelector(".action").appendChild(but);
 nowy.querySelector(".action").appendChild(butdel);
 
@@ -140,6 +149,7 @@ for(let i = 0; i < list.length; ++i) {
     var but=document.createElement("button");
     but.id=list[i].lp;
     but.onclick=function Edit(this){
+      if(document.getElementById("name").value!=null&&parseFloat(document.getElementById("amount").value)>0&&parseFloat(document.getElementById("price").value)>0){
         var el=document.getElementById("name")
       list[this.id-1].name=el.value;
       el=document.getElementById("amount")
@@ -149,9 +159,16 @@ for(let i = 0; i < list.length; ++i) {
           list[this.id-1].sum=list[this.id-1].price*list[this.id-1].amount;
     console.log(list);
     sumsum();
+     let a=document.getElementById("tableId").rows.length;
+     for(let i=a-2;i>0;i--)
+ document.getElementById("tableId").deleteRow(i);
     listlp();
     localStorage.lista = JSON.stringify(list)
     show();  //tu liste zapisujesz
+      }
+    else
+    alert("Wprowadź poprawne dane")
+    event.preventDefault();
 };
 but.innerText="Edit";
 

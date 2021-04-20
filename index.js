@@ -6,7 +6,7 @@ class Product {
     this.name=name;
     this.amount=amount;
     this.price=price;
-    this.sum=price*amount;
+    this.sum=Math.round(price*amount*100)/100;
     this.lp=lp;
   }
 }
@@ -16,14 +16,13 @@ document.forms.myform.onsubmit = function (event) {
  {
 list = JSON.parse(localStorage.lista)}
 else list=[];
-// tutaj walidacja na podstawie targeta
 if(event.target.name.value!=null&&parseFloat(event.target.amount.value)>0&&parseFloat(event.target.price.value)>0){
-var newpro=new Product(list.length+1,event.target.name.value,event.target.amount.value,event.target.price.value);
+var newpro=new Product(list.length+1,event.target.name.value,parseFloat(event.target.amount.value.replace(",",".")),parseFloat(event.target.price.value.replace(",",".")));
 
 list.push(newpro);
 localStorage.lista = JSON.stringify(list)
   let nowy = wzor.cloneNode(true);
-
+  console.log(typeof(3));
     nowy.querySelector(".lp").innerHTML = newpro.lp;
     nowy.querySelector(".name").innerHTML = newpro.name;
     nowy.querySelector(".amount").innerHTML = newpro.amount;
@@ -36,9 +35,9 @@ localStorage.lista = JSON.stringify(list)
  var el=document.getElementById("name")
       list[this.id-1].name=el.value;
       el=document.getElementById("amount")
-        list[this.id-1].amount=el.value;
+        list[this.id-1].amount=parseFloat(event.target.amount.value);
         el=document.getElementById("price")
-          list[this.id-1].price=el.value;
+          list[this.id-1].price=parseFloat(event.target.price.value);
           list[this.id-1].sum=list[this.id-1].price*list[this.id-1].amount;
     console.log(list);
     sumsum();
@@ -47,7 +46,7 @@ localStorage.lista = JSON.stringify(list)
  document.getElementById("tableId").deleteRow(i);
   listlp();
     listlp();
-    localStorage.lista = JSON.stringify(list)  //tu liste zapisujesz
+    localStorage.lista = JSON.stringify(list) 
     show();
       }
       else alert("Wprowadź poprawne dane")
@@ -67,7 +66,7 @@ var butdel=document.createElement("button");
   console.log(list);
   listlp();
   console.log(list);
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list)  
   show();
 };
 butdel.innerText="Delete";
@@ -87,7 +86,7 @@ localStorage.lista = JSON.stringify(list)
  for(let i=a-2;i>0;i--)
  document.getElementById("tableId").deleteRow(i);
   listlp();
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list) 
   show();}
 };
 but1.innerText="Up";
@@ -109,7 +108,7 @@ localStorage.lista = JSON.stringify(list)
  for(let i=a-2;i>0;i--)
  document.getElementById("tableId").deleteRow(i);
   listlp();
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list) 
   show();}
 };
 but2.innerText="Down";
@@ -137,7 +136,6 @@ function show(){
  {
 list = JSON.parse(localStorage.lista)}
 else list=[];
-//local storage pobierasz id o listy dodajesz
 for(let i = 0; i < list.length; ++i) {
     let nowy = wzor.cloneNode(true);
 
@@ -165,7 +163,7 @@ for(let i = 0; i < list.length; ++i) {
  document.getElementById("tableId").deleteRow(i);
     listlp();
     localStorage.lista = JSON.stringify(list)
-    show();  //tu liste zapisujesz
+    show();
       }
     else
     alert("Wprowadź poprawne dane")
@@ -186,7 +184,7 @@ var butdel=document.createElement("button");
   console.log(list);
   listlp();
   console.log(list);
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list)
   show();
 };
 butdel.innerText="Delete";
@@ -209,7 +207,7 @@ localStorage.lista = JSON.stringify(list)
  for(let i=a-2;i>0;i--)
  document.getElementById("tableId").deleteRow(i);
   listlp();
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list)
   show();}
 };
 but1.innerText="Up";
@@ -230,7 +228,7 @@ localStorage.lista = JSON.stringify(list)
  for(let i=a-2;i>0;i--)
  document.getElementById("tableId").deleteRow(i);
   listlp();
-  localStorage.lista = JSON.stringify(list)       //tu liste zapisujesz
+  localStorage.lista = JSON.stringify(list)
   show();}
 };
 but2.innerText="Down";
@@ -251,18 +249,7 @@ var doc=document.getElementById("sumsum");
 doc.innerText=pom;
 }
 
-
-
-// to do wywalenia jak local storage dodasz
 var list=[];
-//var pro1=new Product(list.length+1,"apple",5,12);
-//list.push(pro1);
-//var pro2=new Product(list.length+1,"greap",3,1);
-//list.push(pro2);
-//var pro3=new Product(list.length+1,"bannana",8,18);
-//list.push(pro3);
-//localStorage.clear();
-//tego nie wywalaj
 const kontener = document.getElementById("kontener")
 const wzor = kontener.querySelector("tr")
 show();

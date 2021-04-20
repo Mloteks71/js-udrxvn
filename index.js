@@ -98,7 +98,8 @@ var but2=document.createElement("button");
 but2.onclick=function Down1(this){
   console.log(document.getElementById("tableId").rows.length);
   console.log(parseInt(this.id)+2);
-      if(parseInt(this.id)+2<document.getElementById("tableId").rows.length){
+  console.log((parseInt(this.id)+2)-document.getElementById("tableId").rows.length)
+      if(parseInt(this.id)<list.length){
         
 [list[this.id], list[this.id-1]] = [list[this.id-1], list[this.id]]
 console.log(list);
@@ -219,7 +220,7 @@ var but2=document.createElement("button");
 but2.onclick=function Down1(this){
   console.log(document.getElementById("tableId").rows.length);
   console.log(parseInt(this.id)+2);
-      if(parseInt(this.id)+2<document.getElementById("tableId").rows.length){
+      if(parseInt(this.id)<list.length){
         
 [list[this.id], list[this.id-1]] = [list[this.id-1], list[this.id]]
 console.log(list);
@@ -260,9 +261,8 @@ var list=[];
 //list.push(pro2);
 //var pro3=new Product(list.length+1,"bannana",8,18);
 //list.push(pro3);
-
+localStorage.clear();
 //tego nie wywalaj
 const kontener = document.getElementById("kontener")
 const wzor = kontener.querySelector("tr")
-
 show();

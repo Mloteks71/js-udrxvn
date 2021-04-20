@@ -261,7 +261,7 @@ var list=[];
 //list.push(pro2);
 //var pro3=new Product(list.length+1,"bannana",8,18);
 //list.push(pro3);
-localStorage.clear();
+//localStorage.clear();
 //tego nie wywalaj
 const kontener = document.getElementById("kontener")
 const wzor = kontener.querySelector("tr")
